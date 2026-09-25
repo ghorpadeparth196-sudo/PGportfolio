@@ -1,0 +1,207 @@
+/* =========================================================
+   POLISHED VISUAL OVERRIDES
+   Keeps the original HTML layout and restores the original GIF background.
+========================================================= */
+
+:root {
+    --glass-bg: rgba(15, 18, 28, 0.58 );
+    --glass-bg-hover: rgba(20, 24, 38, 0.72);
+    --glass-border: rgba(255, 255, 255, 0.16);
+    --accent-purple: #a18cff;
+    --accent-blue: #72c9ff;
+}
+
+/* Original GIF background restored */
+body {
+    background: #000;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.72),
+            rgba(0, 0, 0, 0.72)
+        ),
+        url("background.gif");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 1;
+    z-index: -2;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.navbar {
+    background: rgba(0, 0, 0, 0.28);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.logo,
+.nav-links a {
+    color: #ffffff;
+}
+
+.logo:hover,
+.nav-links a:hover {
+    color: var(--accent-blue);
+    opacity: 1;
+}
+
+/* Keep the existing placement, but give each section a restrained glass surface. */
+.box {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 22px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.box:hover {
+    background: var(--glass-bg-hover);
+    border: 1px solid rgba(161, 140, 255, 0.42);
+    transform: translateY(-3px);
+    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.28);
+}
+
+/* Make project areas read like actual website previews, not generic cards. */
+.project-box {
+    overflow: hidden;
+    padding-top: 25px;
+    padding-bottom: 35px;
+    background: rgba(0, 0, 0, 0.42);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.project-box:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: none;
+}
+
+.project-header {
+    padding: 0 25px;
+    margin-bottom: 18px;
+}
+
+.project-header small {
+    color: rgba(255, 255, 255, 0.54);
+}
+
+.project-header h2 {
+    color: #ffffff;
+    text-shadow: 0 5px 22px rgba(0, 0, 0, 0.45);
+}
+
+.project-header a {
+    color: var(--accent-blue);
+    border: 1px solid rgba(114, 201, 255, 0.38);
+    border-radius: 100px;
+    padding: 10px 14px;
+    background: rgba(114, 201, 255, 0.08);
+}
+
+.project-header a:hover {
+    color: #ffffff;
+    background: var(--accent-purple);
+    border-color: var(--accent-purple);
+    opacity: 1;
+}
+
+/* Browser-window treatment around the live iframe. */
+.preview {
+    position: relative;
+    height: 500px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    background: #111;
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.35),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.preview::before {
+    content: "";
+    display: block;
+    height: 27px;
+    background:
+        radial-gradient(circle at 14px 14px, #ff6b6b 0 4px, transparent 4.5px),
+        radial-gradient(circle at 30px 14px, #ffd166 0 4px, transparent 4.5px),
+        radial-gradient(circle at 46px 14px, #63e6be 0 4px, transparent 4.5px),
+        rgba(255, 255, 255, 0.075);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.preview iframe {
+    height: calc(100% - 27px);
+    border-radius: 0 0 14px 14px;
+}
+
+.bottom-box {
+    min-height: 180px;
+}
+
+.tags span {
+    padding: 7px 11px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.tags span:hover {
+    color: #ffffff;
+    border-color: var(--accent-purple);
+    background: rgba(161, 140, 255, 0.16);
+}
+
+.contact-icons a {
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.contact-icons a:hover {
+    color: #ffffff;
+    background: var(--accent-purple);
+}
+
+@media (max-width: 800px) {
+    .box {
+        border-radius: 19px;
+    }
+
+    .project-header {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 500px) {
+    .box {
+        border-radius: 16px;
+    }
+
+    .project-header {
+        padding: 0 8px;
+    }
+
+    .preview {
+        height: 300px;
+    }
+}
